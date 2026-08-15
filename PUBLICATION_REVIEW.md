@@ -1,63 +1,60 @@
-# GitHub 发布核验记录
+# WorkBuddy 法律专家市场发布核验记录
 
 核验日期：2026-08-15
 
 发布工作分支：`agent/publish-legal-experts`
 
-## 1. 发布范围
+## 1. 仓库定位
 
-本次仅纳入以下现行目录：
+本仓库是轻量 marketplace 索引，不再内嵌专家本体：
 
-- `plugins/execution-counsel`
-- `plugins/litigation-counsel`
+- `jackcheng459/execution-counsel` 独立维护执行律师。
+- `jackcheng459/litigation-counsel` 独立维护诉讼律师。
+- `jackcheng459/workbuddy-legal-experts` 只维护统一入口、来源声明和总体状态。
+
+该结构允许两个专家独立更新、审核、发布和回滚，同时保留一个统一的 WorkBuddy 添加入口。
+
+## 2. 本仓库发布范围
+
 - `.codebuddy-plugin/marketplace.json`
+- `README.md`
+- `PUBLICATION_REVIEW.md`
+- `.gitignore`
 
-明确排除：
+已从本分支移除原先内嵌的 `plugins/execution-counsel` 与 `plugins/litigation-counsel`。这些内容已经复制到各自独立私有仓库的发布工作分支，原始 Git 提交仍可恢复。
 
-- `execution-counsel-v1.0.0-backup-20260813`
-- `execution-counsel-20260811-v1.2.0`
-- 所有 `.DS_Store`
-- 本地审计运行记录和安装候选 ZIP
+## 3. 机械校验
 
-## 2. 机械校验
+- marketplace 清单为有效 JSON。
+- 两个插件来源均使用 GitHub 仓库对象，不再使用本仓库相对路径。
+- 目标仓库 `jackcheng459/execution-counsel` 与 `jackcheng459/litigation-counsel` 已创建，当前保持 Private。
+- 本仓库不包含专家本体、客户材料、案件原件、密钥、账号令牌、备份或内部审计运行记录。
 
-使用 WorkBuddy 内置 `expert-manager` v0.1.0 的 `validate_expert.py` 对两个专家逐一校验：
-
-| 专家 | 结果 | 警告 |
-| --- | --- | --- |
-| `execution-counsel` | 通过 | `displayDescription.zh` 为 114 字，超过建议的 40 至 50 字 |
-| `litigation-counsel` | 通过 | `displayDescription.zh` 为 112 字，超过建议的 40 至 50 字 |
-
-同时确认：
-
-- marketplace 与两个 plugin 清单均为有效 JSON。
-- 两张头像均为 512 x 512 PNG。
-- 发布范围内未发现软链接或可执行文件。
-- 文本扫描未发现 API Key、Token、密码、真实案号或客户材料。
-- 公开联系方式统一为 `wx1811985798`。
-- GitHub 工作副本仅机械删除了 6 处空列表项的行尾空格，不改变文字和运行语义。
-
-## 3. 待闭合问题
+## 4. 专家状态
 
 ### execution-counsel
 
-- 基础结构有效。
-- 版本为 1.2.0，含 CHANGELOG 和完整 references。
-- 展示描述长度不符合当前 40 至 50 字建议，但不阻断结构校验。
+- 版本：1.2.0。
+- 独立仓库分支：`agent/publish-v1.2.0`。
+- 状态：发布候选，等待 Draft PR 审阅。
 
 ### litigation-counsel
 
-- README 仍有 5 处 `[TODO]` 占位。
-- `skills/legal-collab-toolkit/SKILL.md` 声明了两个 references，但包内没有对应文件。
-- Agent frontmatter 引用了 `ai-legal-case-workflow`，该 Skill 未随本专家包提供，也未在 plugin 清单中声明。
-- 仍采用“红级仅本地处理”的旧数据口径，与当前绿色、黄色、红色、红线四类链路准入规则不完全一致。
-- 缺少独立 CHANGELOG 和公开发布前的完整复核回执。
+- 版本：1.0.0。
+- 独立仓库分支：`agent/publish-v1.0.0-preview`。
+- 状态：预览候选，README、references、依赖声明、数据边界和发布文档仍待整改。
 
-因此，`litigation-counsel` 当前状态为预览，不应宣称已经正式放行。
+## 5. 合并顺序
 
-## 4. 发布闸门
+1. 先审阅并决定是否合并 `execution-counsel` 的发布 PR。
+2. 完成 `litigation-counsel` 整改、复核，再决定是否合并其发布 PR。
+3. 两个专家仓库的 `main` 均存在可安装内容后，再合并本市场索引 PR。
+4. 公开可见性、版本标签和 GitHub Release 分别取得 Jack 明确授权后执行。
 
-- GitHub 私有仓库和 Draft PR：允许，用于 Jack 终审。
-- GitHub 公开可见：等待 Jack 明确授权。
-- 合并至 `main`：等待 Jack 审阅 Draft PR 后决定。
-- `litigation-counsel` 正式放行：等待上述待闭合问题完成修订和复核。
+## 6. 当前闸门
+
+- 三个仓库保持 Private。
+- 三个发布 PR 保持 Draft。
+- 不直接写入任何仓库的 `main`。
+- 不创建版本标签或 GitHub Release。
+- 不宣称两个专家已经公开发布或正式放行。

@@ -2,12 +2,14 @@
 
 程建都律师维护的 WorkBuddy 法律专家市场，目前收录执行律师与诉讼律师两个 Agent 型专家。
 
+本仓库只维护市场索引。两个专家分别保存在独立仓库中，可以独立开发、审核、发布和回滚。
+
 ## 收录内容
 
 | 专家 | 版本 | 当前状态 | 主要用途 |
 | --- | --- | --- | --- |
-| `execution-counsel` | 1.2.0 | 发布候选 | 申请执行人侧的谈案、接案评估、建项、材料增量更新、财产线索行动化和执行底稿 |
-| `litigation-counsel` | 1.0.0 | 预览 | 民事诉讼分析、证据整理、文书起草、庭审策略和调解评估 |
+| [`execution-counsel`](https://github.com/jackcheng459/execution-counsel) | 1.2.0 | 发布候选 | 申请执行人侧的谈案、接案评估、建项、材料增量更新、财产线索行动化和执行底稿 |
+| [`litigation-counsel`](https://github.com/jackcheng459/litigation-counsel) | 1.0.0 | 预览 | 民事诉讼分析、证据整理、文书起草、庭审策略和调解评估 |
 
 两个专家只生成候选意见和待律师复核成果，不替代律师完成案件承接、程序选择、法源核验、金额核算、文书签发或其他专业决定。
 
@@ -21,11 +23,20 @@
 
 添加后，从该市场选择需要的专家插件安装。私有仓库阶段仅仓库授权用户可访问；改为公开仓库后，可直接通过上述仓库标识添加。
 
+## 仓库分工
+
+- `workbuddy-legal-experts`：只维护市场清单、统一入口和总体状态。
+- `execution-counsel`：独立维护执行律师的代码、CHANGELOG、验证、版本标签和 Release。
+- `litigation-counsel`：独立维护诉讼律师的代码、整改、验证、版本标签和 Release。
+
+市场索引只引用各专家仓库的正式 `main`。专家分支尚未通过审核时，不应提前合并市场索引。
+
 ## 质量状态
 
 - `execution-counsel` 已通过 WorkBuddy `expert-manager` 结构校验，当前仅有展示描述长度警告。
 - `litigation-counsel` 同样通过基础结构校验，但 README 仍含占位内容，Skill 引用了尚未随包提供的 references，并依赖外部 `ai-legal-case-workflow`。在这些问题闭合前，不应标记为正式放行版本。
-- 仓库不包含本地备份目录、升级审计目录、`.DS_Store`、客户材料、案件原件、密钥或账号令牌。
+- 本市场仓库不再内嵌专家文件，只保留两个独立 GitHub 仓库的来源声明。
+- 三个仓库均不包含本地备份目录、升级审计目录、`.DS_Store`、客户材料、案件原件、密钥或账号令牌。
 
 详细核验见 [PUBLICATION_REVIEW.md](PUBLICATION_REVIEW.md)。
 

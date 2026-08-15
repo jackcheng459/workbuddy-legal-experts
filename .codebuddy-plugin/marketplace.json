@@ -4,12 +4,22 @@
   "plugins": [
     {
       "name": "litigation-counsel",
-      "source": "./plugins/litigation-counsel",
+      "source": {
+        "source": "github",
+        "repo": "jackcheng459/litigation-counsel"
+      },
+      "version": "1.0.0",
+      "repository": "https://github.com/jackcheng459/litigation-counsel",
       "description": "Litigation counsel for civil lawsuit cases - pre-suit analysis, evidence, pleadings, trial strategy."
     },
     {
       "name": "execution-counsel",
-      "source": "./plugins/execution-counsel",
+      "source": {
+        "source": "github",
+        "repo": "jackcheng459/execution-counsel"
+      },
+      "version": "1.2.0",
+      "repository": "https://github.com/jackcheng459/execution-counsel",
       "description": "Applicant-side execution counsel for continuous intake, engagement assessment, project memory, material updates, and action-oriented enforcement workpapers under lawyer control."
     }
   ]

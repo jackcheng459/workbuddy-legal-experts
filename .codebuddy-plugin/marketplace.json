@@ -1,0 +1,16 @@
+{
+  "name": "workbuddy-legal-experts",
+  "description": "WorkBuddy legal expert marketplace maintained by Jack Cheng.",
+  "plugins": [
+    {
+      "name": "litigation-counsel",
+      "source": "./plugins/litigation-counsel",
+      "description": "Litigation counsel for civil lawsuit cases - pre-suit analysis, evidence, pleadings, trial strategy."
+    },
+    {
+      "name": "execution-counsel",
+      "source": "./plugins/execution-counsel",
+      "description": "Applicant-side execution counsel for continuous intake, engagement assessment, project memory, material updates, and action-oriented enforcement workpapers under lawyer control."
+    }
+  ]
+}

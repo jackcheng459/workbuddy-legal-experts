@@ -1,0 +1,26 @@
+{
+  "name": "workbuddy-legal-experts",
+  "description": "WorkBuddy legal expert marketplace maintained by Jack Cheng.",
+  "plugins": [
+    {
+      "name": "litigation-counsel",
+      "source": {
+        "source": "github",
+        "repo": "jackcheng459/litigation-counsel"
+      },
+      "version": "1.0.0",
+      "repository": "https://github.com/jackcheng459/litigation-counsel",
+      "description": "Lawyer-controlled civil and commercial litigation workflow for case analysis, evidence mapping, pleadings, hearings, settlement, and review-pending workpapers."
+    },
+    {
+      "name": "execution-counsel",
+      "source": {
+        "source": "github",
+        "repo": "jackcheng459/execution-counsel"
+      },
+      "version": "1.2.0",
+      "repository": "https://github.com/jackcheng459/execution-counsel",
+      "description": "Applicant-side execution counsel for continuous intake, engagement assessment, project memory, material updates, and action-oriented enforcement workpapers under lawyer control."
+    }
+  ]
+}
